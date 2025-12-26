@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Escolha o melhor celular</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <header class="hero">
+      <div>
+        <h1><span class="logo">ECell</span> — Encontre seu celular</h1>
+        <p class="lead">Evolution Team com o melhor para você.</p>
+      </div>
+    </header>
+
+    <section class="card question">
+      <h2>1. Qual o foco principal?</h2>
+      <div class="options">
+        <label><input type="radio" name="focus" value="camera" checked> Câmera</label>
+        <label><input type="radio" name="focus" value="performance"> Desempenho</label>
+  <label><input type="radio" name="focus" value="gaming"> Focado em jogos</label>
+        <label><input type="radio" name="focus" value="battery"> Bateria</label>
+        <label><input type="radio" name="focus" value="value"> Custo-benefício</label>
+      </div>
+    </section>
+
+    <section class="card question">
+      <h2>2. Prefere qual sistema?</h2>
+      <div class="options">
+        <label><input type="radio" name="os" value="android" checked> Android</label>
+        <label><input type="radio" name="os" value="iphone"> iPhone (iOS)</label>
+        <label><input type="radio" name="os" value="both"> Ambos</label>
+      </div>
+    </section>
+
+    <section class="card question">
+      <h2>3. Qual é seu orçamento aproximado?</h2>
+      <div class="options">
+        <label><input type="radio" name="budget" value="0-500"> Até 500</label>
+        <label><input type="radio" name="budget" value="500-1000" checked> 500 - 1000</label>
+        <label><input type="radio" name="budget" value="1000-2000"> 1000 - 2000</label>
+        <label><input type="radio" name="budget" value="2000+"> 2000 ou mais</label>
+      </div>
+    </section>
+
+    <section class="card question">
+      <h2>4. Armazenamento / memória — prefere?</h2>
+      <div class="options">
+        <label><input type="radio" name="storage" value="64"> 64 GB (ou menos)</label>
+        <label><input type="radio" name="storage" value="128" checked> 128 GB</label>
+        <label><input type="radio" name="storage" value="256"> 256 GB</label>
+        <label><input type="radio" name="storage" value="512"> 512 GB+</label>
+      </div>
+    </section>
+
+    <section class="card question">
+      <h2>5. Quão recente precisa ser o aparelho?</h2>
+      <div class="options">
+        <label><input type="radio" name="recency" value="very"> Muito recente (últimos 1-2 anos)</label>
+        <label><input type="radio" name="recency" value="less"> Menos recente (aceito modelos anteriores)</label>
+        <label><input type="radio" name="recency" value="any" checked> Tanto faz</label>
+      </div>
+    </section>
+
+    <section class="card question">
+      <h2>6. Precisa de 5G?</h2>
+      <div class="options">
+        <label><input type="radio" name="fiveg" value="any" checked> Indiferente</label>
+        <label><input type="radio" name="fiveg" value="yes"> Sim</label>
+        <label><input type="radio" name="fiveg" value="no"> Não</label>
+      </div>
+    </section>
+
+    <section class="card question">
+      <h2>7. Carregamento rápido é importante?</h2>
+      <div class="options">
+        <label><input type="radio" name="fastcharge" value="any" checked> Indiferente</label>
+        <label><input type="radio" name="fastcharge" value="yes"> Sim</label>
+        <label><input type="radio" name="fastcharge" value="no"> Não</label>
+      </div>
+    </section>
+
+    <section class="card question">
+      <h2>8. Resistente à água e poeira é importante?</h2>
+      <div class="options">
+        <label><input type="radio" name="waterproof" value="any" checked> Indiferente</label>
+        <label><input type="radio" name="waterproof" value="yes"> Sim</label>
+        <label><input type="radio" name="waterproof" value="no"> Não</label>
+      </div>
+    </section>
+
+    <section class="card question">
+      <h2>9. Prefere novo ou usado?</h2>
+      <div class="options">
+        <label><input type="radio" name="condition" value="new" checked> Novo</label>
+        <label><input type="radio" name="condition" value="used"> Usado / recondicionado</label>
+      </div>
+    </section>
+
+    <div class="actions">
+      <button id="findBtn" class="primary">Encontrar meu celular</button>
+      <button id="resetBtn">Limpar respostas</button>
+    </div>
+
+    <section id="results" class="card results" aria-live="polite">
+      <h2>Resultados</h2>
+      <div id="priceSummary" class="muted" style="margin-bottom:8px">–</div>
+      <div id="resultsList">Responda as perguntas e clique em "Encontrar meu celular".</div>
+      <div id="loader" class="loader" aria-hidden="true" style="display:none"></div>
+    </section>
+
+    <footer class="footer">
+      <small>Observação: as recomendações usam um conjunto de exemplos. Links abrem uma busca externa (Google) para mostrar preços e lojas.</small>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

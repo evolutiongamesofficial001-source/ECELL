@@ -1,0 +1,146 @@
+:root{
+	/* black / purple / violet theme */
+	--bg: linear-gradient(180deg,#020006 0%, #0b0220 60%);
+	--glass: rgba(255,255,255,0.02);
+	--card: rgba(255,255,255,0.03);
+	--accent: #9b59ff; /* violet */
+	--accent-2: #6d28d9; /* deep purple */
+	--muted: #9a8fbf;
+	--text: #efe8ff;
+}
+
+*{box-sizing:border-box}
+body{font-family:'Inter',system-ui,Arial,sans-serif;margin:0;padding:32px;background:var(--bg);color:var(--text);min-height:100vh}
+.container{max-width:1000px;margin:0 auto}
+.hero{display:flex;align-items:center;gap:18px;margin-bottom:6px}
+h1{margin:0;font-size:28px;letter-spacing:0.2px}
+.lead{margin:6px 0 0;color:var(--muted);max-width:720px}
+
+.card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));backdrop-filter:blur(6px);padding:18px;border-radius:14px;box-shadow:0 8px 30px rgba(6,10,20,0.6);margin-top:18px;border:1px solid rgba(255,255,255,0.04)}
+
+/* futuristic background overlays and subtle motion */
+body::before{
+	content:'';
+	position:fixed;inset:0;z-index:-1;
+	background:radial-gradient(ellipse at 10% 10%, rgba(109,40,217,0.06), transparent 10%), radial-gradient(ellipse at 90% 90%, rgba(155,89,255,0.04), transparent 20%);
+	pointer-events:none;mix-blend-mode:screen;opacity:0.95;filter:blur(18px);
+	animation: bgDrift 12s linear infinite;
+}
+@keyframes bgDrift { 0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)} }
+
+/* subtle grid lines */
+body::after{
+	content: '';
+	position: fixed; inset:0; z-index:-1; pointer-events:none;
+	background-image: linear-gradient(rgba(109,40,217,0.015) 1px, transparent 1px), linear-gradient(90deg, rgba(155,89,255,0.01) 1px, transparent 1px);
+	background-size: 240px 240px, 240px 240px;
+	opacity:0.6;
+}
+.question h2{margin:0 0 12px}
+.options{display:flex;flex-wrap:wrap;gap:10px}
+.options label{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);cursor:pointer;color:var(--text);transition:transform .15s ease,box-shadow .15s}
+.options input{margin-right:8px}
+.options label:hover{transform:translateY(-4px);box-shadow:0 8px 30px rgba(8,14,30,0.6);border-color:rgba(110,231,255,0.12)}
+
+/* selected state: slightly larger and glowing */
+/* uses :has() to detect checked input inside label (modern browsers) */
+.options label:has(input:checked) {
+	transform: translateY(-6px) scale(1.02);
+	border-color: rgba(110,231,255,0.18);
+	box-shadow: 0 18px 50px rgba(110,231,255,0.06);
+}
+
+/* nicer focus for keyboard users */
+.options label:focus-within { outline: 2px solid rgba(138,125,255,0.12); outline-offset:2px }
+
+.actions{display:flex;gap:12px;margin-top:16px}
+button{padding:10px 16px;border-radius:12px;border:0;cursor:pointer;font-weight:700}
+button.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#021226;box-shadow:0 10px 30px rgba(106,178,255,0.12)}
+button:not(.primary){background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--accent);}
+
+/* quick click pop animation for buttons */
+@keyframes clickPop { 0% { transform: scale(1); } 40% { transform: scale(.96); } 100% { transform: scale(1); } }
+button.clicked { animation: clickPop .22s cubic-bezier(.2,.8,.2,1); }
+
+/* subtle press effect on non-primary buttons */
+button:not(.primary):active { transform: translateY(2px) scale(.995); }
+
+.results .cardItem{display:flex;gap:14px;align-items:flex-start;padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);margin-bottom:12px;background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01))}
+.card.glass-dark{background:linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.35));border:1px solid rgba(255,255,255,0.04)}
+.results .specs{font-size:13px;color:var(--muted)}
+.muted{color:var(--muted);font-size:13px}
+.footer{margin-top:18px;color:var(--muted);font-size:13px}
+
+/* small neon accent for links */
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* animations */
+@keyframes popIn { from { transform: translateY(10px) scale(.995); opacity:0 } to { transform: translateY(0) scale(1); opacity:1 } }
+@keyframes glow { 0% { box-shadow: 0 0 0px rgba(110,231,255,0.00) } 50% { box-shadow: 0 0 18px rgba(110,231,255,0.06) } 100% { box-shadow: 0 0 0px rgba(110,231,255,0.00) } }
+.cardItem{animation:popIn .28s ease both}
+.primary{transition:transform .12s ease, box-shadow .12s ease}
+.primary:active{transform:translateY(2px)}
+.primary:hover{animation:glow 1.6s infinite}
+
+/* card hover tilt and sheen for a futuristic look */
+.card:hover{transform:translateY(-6px) perspective(800px) rotateX(2deg); transition:transform .28s cubic-bezier(.2,.9,.2,1)}
+.card{position:relative;overflow:hidden}
+.card::after{content:'';position:absolute;left:-60%;top:-30%;width:40%;height:140%;background:linear-gradient(120deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02), rgba(255,255,255,0.06));transform:skewX(-18deg) translateX(0);opacity:0;pointer-events:none;transition:all .9s}
+.card:hover::after{transform:skewX(-18deg) translateX(220%);opacity:0.18}
+
+/* stronger neon glow for primary button */
+button.primary{box-shadow:0 8px 40px rgba(107,33,168,0.18), inset 0 -2px 12px rgba(255,255,255,0.02)}
+button.primary:hover{box-shadow:0 18px 70px rgba(109,40,217,0.18), 0 6px 30px rgba(107,33,168,0.08)}
+
+/* card items slight 3D pop on hover */
+.results .cardItem{transition:transform .22s ease, box-shadow .22s ease}
+.results .cardItem:hover{transform:translateY(-6px) translateZ(6px); box-shadow:0 20px 50px rgba(97,23,153,0.12)}
+
+/* mobile friendly touch targets */
+@media (max-width:700px){
+	button{padding:14px 18px;font-size:16px}
+	.options label{padding:12px 16px}
+}
+
+@media (max-width:700px){
+	.actions{flex-direction:column}
+	.actions button{width:100%}
+	.options label{display:block;width:100%}
+}
+
+/* logo style */
+.logo{background:linear-gradient(90deg,var(--accent-2),var(--accent));padding:6px 10px;border-radius:8px;color:#0a0010;font-weight:800;margin-right:8px}
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px) } to { opacity: 1; transform: translateY(0) } }
+.results.has-results{ animation: fadeIn .28s ease both }
+
+/* loader / overlay in results */
+.loader{
+	position:absolute;
+	right:18px;
+	top:18px;
+	width:44px;
+	height:44px;
+	border-radius:50%;
+	border:4px solid rgba(255,255,255,0.06);
+	border-top-color:var(--accent);
+	animation:spin 0.9s linear infinite;
+	z-index:40;
+	box-shadow:0 6px 20px rgba(0,0,0,0.6);
+}
+@keyframes spin{ to { transform: rotate(360deg) } }
+
+/* when results area is loading show overlay and dim list */
+.results.loading{position:relative}
+.results.loading #resultsList{opacity:0.25;filter:blur(1.5px);pointer-events:none}
+.results.loading .loader{display:block}
+
+/* pulse on primary while loading */
+@keyframes pulse { 0%{ transform: scale(1); box-shadow:0 8px 30px rgba(110,231,255,0.04)} 50%{ transform: scale(1.03); box-shadow:0 18px 40px rgba(110,231,255,0.12)} 100%{ transform: scale(1); box-shadow:0 8px 30px rgba(110,231,255,0.04)} }
+.primary.loading { animation: pulse 1s infinite; }
+
+@media (max-width:700px){.hero{flex-direction:column;align-items:flex-start}.options{flex-direction:column}}
+
+/* futuristic accent lines */
+.container:before{content:'';position:fixed;left:0;top:0;height:2px;width:100%;background:linear-gradient(90deg,rgba(110,231,255,0.2),rgba(138,125,255,0.2));pointer-events:none}
